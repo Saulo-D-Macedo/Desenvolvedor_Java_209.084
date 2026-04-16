@@ -31,7 +31,7 @@ public class Pessoa {
      
     public String resultIdade() { 
 
-        if (idade >= 18) {
+        if(idade >= 18) {
             return "Maior de Idade" ; 
 
 

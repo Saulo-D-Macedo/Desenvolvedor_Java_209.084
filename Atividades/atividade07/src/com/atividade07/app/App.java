@@ -1,20 +1,123 @@
 package com.atividade07.app;
+
+import java.util.Scanner;
+import com.atividade07.models.*;
+
 public class App {
-    public static void main(String[] args) throws Exception {
-        // TODO: completar classe ContaPJ
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Conta conta = null;
+        
+        System.out.println("Bem - Vindo ao Roubank");
+        System.out.println();
+        
+        System.out.println("Você deseja se cadastrar como:");
+        System.out.println("1 - PESSOA FÍSICA");
+        System.out.println("2 - PESSOA JURÍDICA");
+        System.out.print("Opção: ");
+        
+        int tipoPessoa = sc.nextInt();
+        sc.nextLine();
+        
+        if (tipoPessoa == 1) {
+            System.out.println();
+            System.out.println("--- CADASTRO PESSOA FÍSICA ---");
+            
+            System.out.print("Nome: ");
+            String nome = sc.nextLine();
+            
+            System.out.print("CPF: ");
+            String cpf = sc.nextLine();
+            
+            System.out.print("E-mail: ");
+            String email = sc.nextLine();
+            
+            System.out.print("Número da Agência: ");
+            String agencia = sc.nextLine();
+            
+            System.out.print("Número da Conta: ");
+            String numConta = sc.nextLine();
+            
+            PessoaFisica pf = new PessoaFisica(nome, cpf, email);
+            conta = new ContaPF(agencia, numConta, 0.0, pf);
+            
+            System.out.println();
+            System.out.println("CADASTRO REALIZADO COM SUCESSO!");
+            
+        } else if (tipoPessoa == 2) {
+            System.out.println();
+            System.out.println("--- CADASTRO PESSOA JURÍDICA ---");
+            
+            System.out.print("Razão Social: ");
+            String razaoSocial = sc.nextLine();
+            
+            System.out.print("Nome Fantasia: ");
+            String nomeFantasia = sc.nextLine();
+            
+            System.out.print("CNPJ: ");
+            String cnpj = sc.nextLine();
+            
+            System.out.print("E-mail: ");
+            String email = sc.nextLine();
+            
+            System.out.print("Número da Agência: ");
+            String agencia = sc.nextLine();
+            
+            System.out.print("Número da Conta: ");
+            String numConta = sc.nextLine();
+            
+            PessoaJuridica pj = new PessoaJuridica(razaoSocial, nomeFantasia, cnpj, email);
+            conta = new ContaPJ(agencia, numConta, 0.0, pj);
+            
+            System.out.println();
+            System.out.println("CADASTRO REALIZADO COM SUCESSO!");
+            
+        } else {
+            System.out.println("Opção inválida! Encerrando programa...");
+            sc.close();
+            return;
+        }
+        
+        int opcao;
+        do {
+            System.out.println();
+            System.out.println(" -----Opções do Roubank-------");
+            System.out.println("1 - Consultar Dados");
+            System.out.println("2 - Fazer Depósito");
+            System.out.println("3 - Fazer Saque");
+            System.out.println("4 - Sair");
+            System.out.print("Escolha uma opção: ");
+            
+            opcao = sc.nextInt();
+            
+            switch (opcao) {
+                case 1:
+                    conta.exibirDados();
+                    break;
+                    
+                case 2:
+                    System.out.print("Valor para depósito: R$ ");
+                    double valorDeposito = sc.nextDouble();
+                    conta.fazerDeposito(valorDeposito);
+                    System.out.println("Depósito realizado! Novo saldo: R$ " + String.format("%.2f", conta.getSaldo()));
+                    break;
+                    
+                case 3:
+                    System.out.print("Valor para saque: R$ ");
+                    double valorSaque = sc.nextDouble();
+                    conta.fazerSaque(valorSaque);
+                    break;
+                    
+                case 4:
+                    System.out.println("Obrigado por usar o Banco Java! Até logo!");
+                    break;
+                    
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+            
+        } while (opcao != 4);
+        
+        sc.close();
     }
 }
-// TODO: atividade 07
-// Crie um programa de aplicativo de banco: o usuário poderá escolher se 
-// deseja entrar como pessoa física ou pessoa jurídica, deverá informar o 
-// nome, email e cpf (classe PessoaFisica), ou nome fantasia, razão social, 
-// email e cnjp (classe PessoaJuridica), e o programa deverá informar a 
-// agência e conta (classe Conta) do titular (os dados do usuário serão 
-// setados uma única vez durante todo o programa). Em seguida, o programa 
-// deverá exibir as opções para o usuário: consultar dados da conta, fazer 
-// saque, fazer depósito, sair do programa. O programa deverá cobrar uma 
-// taxa de 0,01% em cima de cada saque feito pela pessoa jurídica. Qualquer 
-// saque só poderá ser feito caso o valor do saque seja menor ou igual ao 
-// saldo da conta.
-// NOTE: use os 4 pilares da orientação a objetos, mais interface e 
-// composição. E o mais importante: DIVIRTAM-SE!!! 😎
