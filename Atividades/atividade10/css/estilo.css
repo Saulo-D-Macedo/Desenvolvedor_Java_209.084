@@ -1,0 +1,67 @@
+.main-header {
+    background-color: #2C2A2B;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0; /* Removemos o padding para a logo encostar no canto */
+    width: 100%;
+}
+
+/* Container da Logo - Exatamente como o grupo no Figma */
+.logo-side {
+    background-color: #555555; /* A cor de destaque do container da logo */
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 30px; /* Espaço interno para a logo respirar */
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+/* Container das Ações - Agrupa Nav e Perfil */
+.actions-side {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding-right: 40px; /* Espaçamento no final do header */
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+/* Estilos dos botões e avatar permanecem os mesmos */
+.btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #FFFFFF;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-focus {
+    border-bottom: 2px solid #58A474;
+    padding-bottom: 4px;
+}
+
+.btn-primary {
+    background-color: #F436B4;
+    padding: 8px 24px;
+    border-radius: 4px;
+    font-style: italic;
+}
+
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #555;
+}
